@@ -27,7 +27,7 @@ public class Bubble : MonoBehaviour {
 			transform.position = bubbleSpawner.position;
 		}
 	}
-//player hits the bubble
+	//player hits the bubble
 	void OnCollisionEnter2D(Collision2D col) { 
 		if (col.gameObject.tag == "Player"){//check for shield
 			if((player.GetComponent<PlayerController>().shieldActivated == false) && (player.GetComponent<PlayerController>().immunePassiveActive == false)){
