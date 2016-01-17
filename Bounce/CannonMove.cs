@@ -17,7 +17,7 @@ public class CannonMove : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (start == true) {
+		if (start == true) {//check if cannon needs to rotate back
 			if (transform.rotation.eulerAngles.z >= 359 && rotatingForward) {
 				rotatingForward = false;
 			} else if ((transform.rotation.eulerAngles.z <= 315) && !rotatingForward){
@@ -25,14 +25,14 @@ public class CannonMove : MonoBehaviour {
 				currentTime = Time.time;
 				pause = true;
 				start = false;
-			}
+			}//rotate the cannon forward
 			if (rotatingForward){
 				transform.Rotate (Vector3.forward * speed * Time.deltaTime);
 			}
 			else 
 				transform.Rotate (Vector3.back * speed * Time.deltaTime);
 		}
-
+		//player is in the cannon
 		if (currentTime + stopTime < Time.time && pause) {
 			player.rigidbody2D.isKinematic = false;
 			pause = false;
