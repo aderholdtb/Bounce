@@ -11,7 +11,6 @@ public class Bubble : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player").transform;
-		//bubbleSpawner = GameObject.FindGameObjectWithTag("bubbleSpawner").transform;
 		transform.position = bubbleSpawner.position;
 	}
 	
@@ -28,20 +27,20 @@ public class Bubble : MonoBehaviour {
 			transform.position = bubbleSpawner.position;
 		}
 	}
-
+//player hits the bubble
 	void OnCollisionEnter2D(Collision2D col) { 
-		if (col.gameObject.tag == "Player"){
+		if (col.gameObject.tag == "Player"){//check for shield
 			if((player.GetComponent<PlayerController>().shieldActivated == false) && (player.GetComponent<PlayerController>().immunePassiveActive == false)){
 				player.GetComponent<PlayerController>().hitByBubble = true;
 				player.GetComponent<PlayerController>().hitByBubbleStart = Time.time;
 				hit = true;
 				transform.renderer.enabled = false;
-			}
+			}//check for passive
 			else if(player.GetComponent<PlayerController>().immunePassiveActive == true){
 				player.GetComponent<PlayerController>().immunePassiveActive = false;
 				player.GetComponent<PlayerController>().currentPassiveCooldown = player.GetComponent<PlayerController>().cooldownImmune + Time.time;
 			}
-			else{
+			else{//plaer is hit by the buble
 				player.GetComponent<PlayerController>().shieldActivated = false;
 				player.GetComponent<PlayerController>().shield.renderer.enabled = false;
 			}
